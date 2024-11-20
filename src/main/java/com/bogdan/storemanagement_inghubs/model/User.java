@@ -1,10 +1,10 @@
-package model;
+package com.bogdan.storemanagement_inghubs.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import model.constants.UserRole;
+import com.bogdan.storemanagement_inghubs.model.constants.UserRole;
 
 @Entity
 @Table(name = "users")

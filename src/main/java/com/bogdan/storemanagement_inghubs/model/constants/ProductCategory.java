@@ -1,4 +1,4 @@
-package model.constants;
+package com.bogdan.storemanagement_inghubs.model.constants;
 
 public enum ProductCategory {
   FRUITS,

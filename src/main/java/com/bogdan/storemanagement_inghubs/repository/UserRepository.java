@@ -1,6 +1,6 @@
-package repository;
+package com.bogdan.storemanagement_inghubs.repository;
 
-import model.User;
+import com.bogdan.storemanagement_inghubs.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
