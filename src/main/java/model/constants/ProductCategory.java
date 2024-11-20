@@ -5,6 +5,10 @@ public enum ProductCategory {
   VEGETABLES,
   DAIRY,
   EGGS,
+  POULTRY,
+  RED_MEAT,
+  FISH,
+  SEA_FOOD,
   FROZEN_PRODUCTS,
   BAKERY,
   WATER,
@@ -15,7 +19,6 @@ public enum ProductCategory {
   OILS,
   SPICES,
   SWEETS,
-  PIES,
   WINES,
   FLOWERS
 }
