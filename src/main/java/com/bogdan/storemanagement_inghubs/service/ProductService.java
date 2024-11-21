@@ -17,13 +17,23 @@ import java.util.Optional;
 public class ProductService {
   private final ProductRepository productRepository;
 
-  public Page<Product> findAll(Pageable pageable, String nameSubString, ProductCategory category) {
+  public Page<Product> findAll(Pageable pageable,
+                               String nameSubString,
+                               Integer minPrice,
+                               Integer maxPrice,
+                               ProductCategory category) {
     return productRepository.findAll((Specification<Product>) (root, query, cb) -> {
       if (query == null) {
         return null;
       }
       if (nameSubString != null) {
         query.where(cb.like(root.get("name"), "%" + nameSubString + "%"));
+      }
+      if (minPrice != null) {
+        query.where(cb.greaterThanOrEqualTo(root.get("price"), minPrice));
+      }
+      if (maxPrice != null) {
+        query.where(cb.lessThanOrEqualTo(root.get("price"), maxPrice));
       }
       if (category != null) {
         query.where(cb.equal(root.get("category"), category));
