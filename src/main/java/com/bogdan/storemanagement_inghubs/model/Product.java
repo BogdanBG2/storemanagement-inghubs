@@ -8,6 +8,7 @@ import com.bogdan.storemanagement_inghubs.model.constants.ProductCategory;
 
 @Entity
 @Table(name = "products", indexes = {
+  @Index(columnList = "name"),
   @Index(columnList = "category")
 })
 @Data
