@@ -37,7 +37,8 @@ public class ProductController {
   }
 
   @PostMapping("/{id}/price")
-  public ResponseEntity<Product> updateProductPrice(@PathVariable Long id, @RequestParam double price) {
+  public ResponseEntity<Product> updateProductPrice(@PathVariable Long id,
+                                                    @RequestParam double price) {
     try {
       return ResponseEntity.ok(productService.update(id, price));
     } catch (IllegalArgumentException e) {
