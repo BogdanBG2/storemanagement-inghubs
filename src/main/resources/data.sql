@@ -1,8 +1,8 @@
 INSERT INTO users (id, name, username, password, role) VALUES
-  (1, 'Bogdan', 'bogdan', 'password', 'ADMIN'),
-  (2, 'John', 'john', 'password', 'USER'),
-  (3, 'Mike', 'mike', 'password', 'USER'),
-  (4, 'Alice', 'alice', 'password', 'USER')
+  (1, 'Bogdan', 'bogdan', '$2a$10$Kp7albIBTheExZdO7s6Fc.sOW57rYpt.PKiBpi9Nl8CYcfpz3BlFW', 'ADMIN'),
+  (2, 'John', 'john', '$2a$10$Kp7albIBTheExZdO7s6Fc.sOW57rYpt.PKiBpi9Nl8CYcfpz3BlFW', 'USER'),
+  (3, 'Mike', 'mike', '$2a$10$Kp7albIBTheExZdO7s6Fc.sOW57rYpt.PKiBpi9Nl8CYcfpz3BlFW', 'USER'),
+  (4, 'Alice', 'alice', '$2a$10$Kp7albIBTheExZdO7s6Fc.sOW57rYpt.PKiBpi9Nl8CYcfpz3BlFW', 'USER')
 ;
 
 INSERT INTO products (id, name, description, price, category) VALUES
