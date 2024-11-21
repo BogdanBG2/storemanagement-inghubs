@@ -38,7 +38,7 @@ public class SecurityConfig {
         .authenticationProvider(authenticationProvider())
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
         .authorizeHttpRequests(authorize -> authorize
-            .requestMatchers("/test/**").permitAll()
+            .requestMatchers("/api/v1/auth/**").permitAll()
             .anyRequest().authenticated()
         )
         .httpBasic(Customizer.withDefaults())

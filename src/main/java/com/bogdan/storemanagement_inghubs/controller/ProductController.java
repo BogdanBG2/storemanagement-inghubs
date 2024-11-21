@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,11 +33,13 @@ public class ProductController {
   }
 
   @PostMapping
+  @PreAuthorize("hasAuthority('ADMIN')")
   public ResponseEntity<Product> addProduct(@RequestBody Product product) {
     return ResponseEntity.ok(productService.save(product));
   }
 
   @PostMapping("/{id}/price")
+  @PreAuthorize("hasAuthority('ADMIN')")
   public ResponseEntity<Product> updateProductPrice(@PathVariable Long id,
                                                     @RequestParam double price) {
     try {
@@ -47,6 +50,7 @@ public class ProductController {
   }
 
   @DeleteMapping("/{id}")
+  @PreAuthorize("hasAuthority('ADMIN')")
   public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
     try {
       productService.deleteById(id);
