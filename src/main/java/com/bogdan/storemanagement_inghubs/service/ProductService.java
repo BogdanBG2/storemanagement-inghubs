@@ -53,4 +53,14 @@ public class ProductService {
   public void deleteById(Long id) {
     productRepository.deleteById(id);
   }
+
+  public Product update(Long id, double newPrice) {
+    Optional<Product> product = findById(id);
+    if (product.isEmpty()) {
+      throw new IllegalArgumentException("Product with id " + id + " not found");
+    }
+    Product updatedProduct = product.get();
+    updatedProduct.setPrice(newPrice);
+    return save(updatedProduct);
+  }
 }
