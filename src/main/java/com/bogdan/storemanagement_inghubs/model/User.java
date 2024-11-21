@@ -21,5 +21,6 @@ public class User implements Serializable {
   @Column(unique = true)
   private String username;
   private String password;
+  @Enumerated(EnumType.STRING)
   private UserRole role;
 }
