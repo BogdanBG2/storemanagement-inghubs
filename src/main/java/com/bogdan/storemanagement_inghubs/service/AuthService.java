@@ -18,6 +18,7 @@ import java.util.Map;
 public class AuthService {
   private final UserService userService;
   private final AuthenticationManager authenticationManager;
+  private final JwtUtils jwtUtils;
 
   public Map<String, String> login(UserLoginDTO userLoginDTO) {
     Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -30,6 +31,6 @@ public class AuthService {
     User user = userService.findByUsername(userLoginDTO.username())
         .orElseThrow(() -> new EntityNotFoundException("User not found: " + userLoginDTO.username()));
 
-    return Map.of("accessToken", JwtUtils.generateToken(user));
+    return Map.of("accessToken", jwtUtils.generateToken(user));
   }
 }

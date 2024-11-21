@@ -18,11 +18,11 @@ import java.util.function.Function;
 @Component
 public class JwtUtils implements Serializable {
   @Value("${jwt.secret:secret}")
-  private static String secret;
+  private String secret;
 
   public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60L;
 
-  public static String generateToken(User user) {
+  public String generateToken(User user) {
     long currentTimeMillis = System.currentTimeMillis();
     Key key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
     return Jwts.builder()
@@ -34,11 +34,11 @@ public class JwtUtils implements Serializable {
         .compact();
   }
 
-  public static <T> T getClaim(String token, Function<Claims, T> claimsResolver) {
+  public <T> T getClaim(String token, Function<Claims, T> claimsResolver) {
     return claimsResolver.apply(getAllClaims(token));
   }
 
-  private static Claims getAllClaims(String token) {
+  private Claims getAllClaims(String token) {
     return Jwts.parserBuilder()
         .setSigningKey(getSigningKey())
         .build()
@@ -46,17 +46,17 @@ public class JwtUtils implements Serializable {
         .getBody();
   }
 
-  public static boolean isTokenValid(String token, UserDetails userDetails) {
+  public boolean isTokenValid(String token, UserDetails userDetails) {
     final String username = getClaim(token, Claims::getSubject);
     return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
   }
 
-  private static boolean isTokenExpired(String token) {
+  private boolean isTokenExpired(String token) {
     final Date expiration = getClaim(token, Claims::getExpiration);
     return expiration.before(new Date());
   }
 
-  private static Key getSigningKey() {
+  private Key getSigningKey() {
     byte[] keyBytes = Decoders.BASE64.decode(secret);
     return Keys.hmacShaKeyFor(keyBytes);
   }

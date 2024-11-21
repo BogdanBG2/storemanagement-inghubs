@@ -1,8 +1,8 @@
 INSERT INTO users (id, name, username, password, role) VALUES
-  (1, 'Bogdan', 'bogdan', '$2a$10$Kp7albIBTheExZdO7s6Fc.sOW57rYpt.PKiBpi9Nl8CYcfpz3BlFW', 'ADMIN'),
-  (2, 'John', 'john', '$2a$10$Kp7albIBTheExZdO7s6Fc.sOW57rYpt.PKiBpi9Nl8CYcfpz3BlFW', 'USER'),
-  (3, 'Mike', 'mike', '$2a$10$Kp7albIBTheExZdO7s6Fc.sOW57rYpt.PKiBpi9Nl8CYcfpz3BlFW', 'USER'),
-  (4, 'Alice', 'alice', '$2a$10$Kp7albIBTheExZdO7s6Fc.sOW57rYpt.PKiBpi9Nl8CYcfpz3BlFW', 'USER')
+  (1, 'Bogdan', 'bogdan', '$2a$12$doz4C8E6/wkLVhxhaCTd7eooy0zFoWq9qOA96ykOT4I9YJ334UFq.', 'ADMIN'),
+  (2, 'John', 'john', '$2a$12$doz4C8E6/wkLVhxhaCTd7eooy0zFoWq9qOA96ykOT4I9YJ334UFq.', 'USER'),
+  (3, 'Mike', 'mike', '$2a$12$doz4C8E6/wkLVhxhaCTd7eooy0zFoWq9qOA96ykOT4I9YJ334UFq.', 'USER'),
+  (4, 'Alice', 'alice', '$2a$12$doz4C8E6/wkLVhxhaCTd7eooy0zFoWq9qOA96ykOT4I9YJ334UFq.', 'USER')
 ;
 
 INSERT INTO products (id, name, description, price, category) VALUES
