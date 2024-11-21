@@ -1,12 +1,11 @@
 package com.bogdan.storemanagement_inghubs.config;
 
+import com.bogdan.storemanagement_inghubs.security.JwtFilter;
 import com.bogdan.storemanagement_inghubs.security.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -29,6 +28,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
   private final UserDetailsServiceImpl userDetailsService;
+  private final JwtFilter jwtFilter;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -36,7 +36,7 @@ public class SecurityConfig {
         .csrf(AbstractHttpConfigurer::disable)
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authenticationProvider(authenticationProvider())
-        .addFilterBefore(null, UsernamePasswordAuthenticationFilter.class) // TODO: implement filter
+        .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
         .authorizeHttpRequests(authorize -> authorize
             .requestMatchers("/test/**").permitAll()
             .anyRequest().authenticated()
