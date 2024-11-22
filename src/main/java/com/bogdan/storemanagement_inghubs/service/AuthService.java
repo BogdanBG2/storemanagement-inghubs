@@ -33,7 +33,7 @@ public class AuthService {
       log.error("Bad credentials for user: {}", userLoginDTO.username());
       throw new BadCredentialsException("Bad credentials for user: ");
     }
-    User user = userService.findByUsername(userLoginDTO.username())
+    User user = userService.findEntityByUsername(userLoginDTO.username())
         .orElseThrow(() -> new EntityNotFoundException("User not found: " + userLoginDTO.username()));
 
     log.info("User authenticated successfully: {}", user.getUsername());

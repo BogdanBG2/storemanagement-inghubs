@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import com.bogdan.storemanagement_inghubs.model.constants.UserRole;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -16,8 +17,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class User implements Serializable {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
   private String name;
   @Column(unique = true)
   private String username;
