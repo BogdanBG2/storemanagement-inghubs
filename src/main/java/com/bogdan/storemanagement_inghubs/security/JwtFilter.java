@@ -39,8 +39,8 @@ public class JwtFilter extends OncePerRequestFilter {
     if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
       UserDetails userDetails = userDetailsService.loadUserByUsername(username);
       if (jwtUtils.isTokenValid(jwt, userDetails)) {
-        User user = userService.findByUsername(username)
-            .orElseThrow(() -> new EntityNotFoundException("Employee not found"));
+        User user = userService.findEntityByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("User not found"));
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
             userDetails, null, userDetails.getAuthorities());
         authenticationToken.setDetails(user);
