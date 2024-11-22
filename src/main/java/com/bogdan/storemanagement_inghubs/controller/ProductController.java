@@ -43,7 +43,7 @@ public class ProductController {
   public ResponseEntity<Product> updateProductPrice(@PathVariable Long id,
                                                     @RequestParam double price) {
     try {
-      return ResponseEntity.ok(productService.update(id, price));
+      return ResponseEntity.ok(productService.updatePrice(id, price));
     } catch (IllegalArgumentException e) {
       return ResponseEntity.notFound().build();
     }

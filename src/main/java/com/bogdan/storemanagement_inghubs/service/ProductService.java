@@ -54,7 +54,7 @@ public class ProductService {
     productRepository.deleteById(id);
   }
 
-  public Product update(Long id, double newPrice) {
+  public Product updatePrice(Long id, double newPrice) {
     Optional<Product> product = findById(id);
     if (product.isEmpty()) {
       throw new IllegalArgumentException("Product with id " + id + " not found");
