@@ -41,9 +41,9 @@ public class ProductController {
   @PostMapping("/{id}/price")
   @PreAuthorize("hasAuthority('ADMIN')")
   public ResponseEntity<Product> updateProductPrice(@PathVariable Long id,
-                                                    @RequestParam double price) {
+                                                    @RequestParam double newPrice) {
     try {
-      return ResponseEntity.ok(productService.updatePrice(id, price));
+      return ResponseEntity.ok(productService.updatePrice(id, newPrice));
     } catch (IllegalArgumentException e) {
       return ResponseEntity.notFound().build();
     }

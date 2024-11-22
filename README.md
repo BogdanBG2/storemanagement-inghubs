@@ -37,3 +37,20 @@ This project is a Store Management System that allows users to manage products a
 - **Database**: Configure your database settings in `application.properties`, and ensure it's up and running.
 - **Initial Data**: Modify the initial data in `src/main/resources/data.sql` if needed.
 - **JWT Secret**: Define the JWT secret in `application.properties` for token generation.
+
+## Endpoints
+
+| Endpoint                   | Method | Description                                | Query Parameters                               |
+|----------------------------| --- |--------------------------------------------|------------------------------------------------|
+| `POST /login`              | `POST` | Authenticate user and generate JWT token.  | ---                                            |
+| `POST /register`           | `POST` | Register a new user.                       | --- |                                           |
+| `GET /users`               | `GET` | Retrieve a list of all users.              | Name substring, role                           |
+| `GET /users/me`            | `GET` | Retrieve the currently authenticated user. | ---                                            |
+| `GET /users/:id`           | `GET` | Retrieve a user by ID.                     | ---                                            |
+| `POST /users/:id/role`     | `PUT` | Assign a role to a user.                   | New role of the given user                     |
+| `DELETE /users/me`         | `DELETE` | Delete the currently authenticated user.   | ---                                            |
+| `GET /products`            | `GET` | Retrieve a list of all products.           | Name substring, min price, max price, category |
+| `POST /products`           | `POST` | Add a new product.                         | ---                                            |
+| `GET /products/:id`        | `GET` | Retrieve a product by ID.                  | ---                                            |
+| `POST /products/:id.price` | `PUT` | Update the price a product.                | New price of the given product                 |
+| `DELETE /products/:id`     | `DELETE` | Delete a product.                          | ---                                            |
