@@ -63,7 +63,7 @@ public class UserService {
     return userRepository.findById(id);
   }
 
-  public void changeUserRole(String username, UUID id, UserRole role) {
+  public void changeUserRole(String username, UUID   id, UserRole role) {
     User user = findById(id).orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + id));
     if (user.getUsername().equals(username)) {
       throw new IllegalArgumentException("You cannot change your own role.");
