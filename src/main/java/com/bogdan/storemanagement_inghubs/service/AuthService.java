@@ -1,6 +1,7 @@
 package com.bogdan.storemanagement_inghubs.service;
 
 import com.bogdan.storemanagement_inghubs.dto.UserLoginDTO;
+import com.bogdan.storemanagement_inghubs.dto.UserRegisterDTO;
 import com.bogdan.storemanagement_inghubs.model.User;
 import com.bogdan.storemanagement_inghubs.utils.JwtUtils;
 import jakarta.persistence.EntityNotFoundException;
@@ -37,5 +38,14 @@ public class AuthService {
 
     log.info("User authenticated successfully: {}", user.getUsername());
     return Map.of("accessToken", jwtUtils.generateToken(user));
+  }
+
+  public void register(UserRegisterDTO userRegisterDTO) {
+    log.info("Registering user: {}...", userRegisterDTO.username());
+    if (userService.existsByUsername(userRegisterDTO.username())) {
+      throw new IllegalArgumentException("Username is already taken: " + userRegisterDTO.username());
+    }
+    User user = userService.createUser(userRegisterDTO);
+    log.info("User registered successfully: {}", user.getUsername());
   }
 }

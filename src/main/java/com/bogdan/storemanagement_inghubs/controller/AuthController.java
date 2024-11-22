@@ -1,6 +1,7 @@
 package com.bogdan.storemanagement_inghubs.controller;
 
 import com.bogdan.storemanagement_inghubs.dto.UserLoginDTO;
+import com.bogdan.storemanagement_inghubs.dto.UserRegisterDTO;
 import com.bogdan.storemanagement_inghubs.service.AuthService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,16 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AuthController {
   private final AuthService authService;
+
+  @PostMapping("/register")
+  public ResponseEntity<Void> register(@RequestBody UserRegisterDTO userRegisterDTO) {
+    try {
+      authService.register(userRegisterDTO);
+      return ResponseEntity.ok().build();
+    } catch (IllegalArgumentException e) {
+      return ResponseEntity.badRequest().build();
+    }
+  }
 
   @PostMapping("/login")
   public ResponseEntity<Map<String, String>> login(@RequestBody UserLoginDTO userLoginDTO) {

@@ -4,17 +4,21 @@ This project is a Store Management System that allows users to manage products a
 
 ## Features
 
-- **User Management**: Add and manage users with roles like ADMIN and USER.
 - **Product Management**: Handle product inventory including adding, updating, and deleting products.
 - **Authentication**: Secure user authentication using JWT tokens.
+- **User Role Management**: Assign roles (ADMIN, USER) to users.
 
 ## Project Structure
 
+- `src/main/java/com/bogdan/storemanagement_inghubs/config`: Configuration classes and properties.
+- `src/main/java/com/bogdan/storemanagement_inghubs/controller`: Controller classes for API endpoints.
+- `src/main/java/com/bogdan/storemanagement_inghubs/dto`: Data Transfer Objects utilized in requests and responses.
 - `src/main/java/com/bogdan/storemanagement_inghubs/model`: Contains model classes for `User` and `Product`.
 - `src/main/java/com/bogdan/storemanagement_inghubs/repository`: Repository interfaces for `User` and `Product`.
-- `src/main/java/com/bogdan/storemanagement_inghubs/service`: Service classes for business logic.
 - `src/main/java/com/bogdan/storemanagement_inghubs/security`: Security configurations and user details service.
-- `src/main/resources`: Contains SQL scripts for database schema and initial data.
+- `src/main/java/com/bogdan/storemanagement_inghubs/service`: Service classes for business logic.
+- `src/main/java/com/bogdan/storemanagement_inghubs/utils`: Utility classes.
+- `src/main/resources`: App configuration files, initial data, and SQL scripts.
 
 ## Setup and Build
 
