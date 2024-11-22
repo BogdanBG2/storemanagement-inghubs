@@ -48,15 +48,4 @@ public class ProductController {
       return ResponseEntity.notFound().build();
     }
   }
-
-  @DeleteMapping("/{id}")
-  @PreAuthorize("hasAuthority('ADMIN')")
-  public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-    try {
-      productService.deleteById(id);
-      return ResponseEntity.noContent().build();
-    } catch (IllegalArgumentException e) {
-      return ResponseEntity.notFound().build();
-    }
-  }
 }
