@@ -44,8 +44,8 @@ class UserServiceTest {
   void testFindById() {
     User user = getMockUser();
     when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
-    Optional<User> foundUser = userService.findById(user.getId());
-    assertEquals(Optional.of(user), foundUser);
+    Optional<UserDTO> foundUser = userService.findById(user.getId());
+    assertEquals(Optional.of(UserDTO.fromUser(user)), foundUser);
   }
 
   @Test
@@ -112,7 +112,7 @@ class UserServiceTest {
     page = page.map(p -> getMockUser());
     when(userRepository.findAll(any(Specification.class), any(Pageable.class)))
         .thenReturn(page);
-    Page<User> result = userService.findAll(pageable, nameSubString, role);
+    Page<UserDTO> result = userService.findAll(pageable, nameSubString, role);
     assertEquals(page, result);
   }
 }

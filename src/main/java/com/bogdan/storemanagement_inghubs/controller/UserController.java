@@ -13,7 +13,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,7 +23,7 @@ public class UserController {
 
   @GetMapping
   @PreAuthorize("hasAuthority('ADMIN')")
-  public ResponseEntity<Page<User>> getAllUsers(Pageable pageable,
+  public ResponseEntity<Page<UserDTO>> getAllUsers(Pageable pageable,
                                                 @RequestParam(required = false) String nameSubstring,
                                                 @RequestParam(required = false) UserRole role) {
     return ResponseEntity.ok(userService.findAll(pageable, nameSubstring, role));
@@ -49,7 +48,7 @@ public class UserController {
 
   @GetMapping("/{id}")
   @PreAuthorize("hasAuthority('ADMIN')")
-  public ResponseEntity<User> getUserById(@PathVariable UUID id) {
+  public ResponseEntity<UserDTO> getUserById(@PathVariable UUID id) {
     return userService.findById(id)
         .map(ResponseEntity::ok)
         .orElse(ResponseEntity.notFound().build());
@@ -59,9 +58,9 @@ public class UserController {
   @PreAuthorize("hasAuthority('ADMIN')")
   public ResponseEntity<Void> changeUserRole(@AuthenticationPrincipal UserDetails userDetails,
                                              @PathVariable UUID id,
-                                             @RequestParam UserRole role) {
+                                             @RequestParam UserRole newRole) {
     try {
-      userService.changeUserRole(userDetails.getUsername(), id, role);
+      userService.changeUserRole(userDetails.getUsername(), id, newRole);
       return ResponseEntity.noContent().build();
     } catch (IllegalArgumentException e) {
       return ResponseEntity.notFound().build();

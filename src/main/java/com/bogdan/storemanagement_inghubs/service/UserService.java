@@ -38,7 +38,7 @@ public class UserService {
     return userRepository.save(newUser);
   }
 
-  public Page<User> findAll(Pageable pageable,
+  public Page<UserDTO> findAll(Pageable pageable,
                             String nameSubstring,
                             UserRole role) {
     return userRepository.findAll(((root, query, criteriaBuilder) -> {
@@ -52,19 +52,24 @@ public class UserService {
         query.where(criteriaBuilder.equal(root.get("role"), role));
       }
       return query.getRestriction();
-    }), pageable);
+    }), pageable).map(UserDTO::fromUser);
   }
 
   public void deleteByUsername(String username) {
     userRepository.deleteByUsername(username);
   }
 
-  public Optional<User> findById(UUID id) {
+  public Optional<UserDTO> findById(UUID id) {
+    return userRepository.findById(id)
+        .map(UserDTO::fromUser);
+  }
+
+  private Optional<User> findEntityById(UUID id) {
     return userRepository.findById(id);
   }
 
   public void changeUserRole(String username, UUID   id, UserRole role) {
-    User user = findById(id).orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + id));
+    User user = findEntityById(id).orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + id));
     if (user.getUsername().equals(username)) {
       throw new IllegalArgumentException("You cannot change your own role.");
     }
