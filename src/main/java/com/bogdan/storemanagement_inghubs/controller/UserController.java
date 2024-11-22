@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -48,7 +49,7 @@ public class UserController {
 
   @GetMapping("/{id}")
   @PreAuthorize("hasAuthority('ADMIN')")
-  public ResponseEntity<User> getUserById(@PathVariable Long id) {
+  public ResponseEntity<User> getUserById(@PathVariable UUID id) {
     return userService.findById(id)
         .map(ResponseEntity::ok)
         .orElse(ResponseEntity.notFound().build());
@@ -57,7 +58,7 @@ public class UserController {
   @PostMapping("/{id}/role")
   @PreAuthorize("hasAuthority('ADMIN')")
   public ResponseEntity<Void> changeUserRole(@AuthenticationPrincipal UserDetails userDetails,
-                                             @PathVariable Long id,
+                                             @PathVariable UUID id,
                                              @RequestParam UserRole role) {
     try {
       userService.changeUserRole(userDetails.getUsername(), id, role);

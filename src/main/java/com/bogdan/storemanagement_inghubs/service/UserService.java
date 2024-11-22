@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -58,11 +59,11 @@ public class UserService {
     userRepository.deleteByUsername(username);
   }
 
-  public Optional<User> findById(Long id) {
+  public Optional<User> findById(UUID id) {
     return userRepository.findById(id);
   }
 
-  public void changeUserRole(String username, Long id, UserRole role) {
+  public void changeUserRole(String username, UUID id, UserRole role) {
     User user = findById(id).orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + id));
     if (user.getUsername().equals(username)) {
       throw new IllegalArgumentException("You cannot change your own role.");
